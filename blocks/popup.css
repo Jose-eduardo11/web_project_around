@@ -9,6 +9,9 @@
   z-index: 99;
   justify-content: center;
 }
+.popup_opened {
+  display: flex;
+}
 .popup__close {
   background-color: transparent;
   border: none;
@@ -16,9 +19,7 @@
   top: 150px;
   left: 910px;
 }
-.popup_opened {
-  display: flex;
-}
+
 .popup__container {
   background-color: #fff;
   max-width: 430px;
