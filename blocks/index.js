@@ -1,11 +1,9 @@
-let popupedit_button = document.getElementsByClassName("data__edit");
-let popup = document.getElementsByClassName("popup");
+let profilepopupbutton = document.querySelector(".data__edit");
+let profilepopup = document.querySelector(".popup");
 
-function edit_profile() {
-  popup.classList.add("popup_opened");
-}
-function close_profile() {
-  popup.classList.remove("popup_opened");
+function handleopenpopup() {
+  console.log("test");
+  profilepopup.classList.add("popup_opened");
 }
 
-edit_button.addEventListener("click", edit_profile);
+profilepopupbutton.addEventListener("click", handleopenpopup);
