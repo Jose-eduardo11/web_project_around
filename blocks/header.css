@@ -1,0 +1,9 @@
+.header__logo {
+  width: 173px;
+  height: 33px;
+  margin-bottom: 41px;
+}
+.header__line {
+  border-color: #545454;
+  /* width: 68%; */
+}
