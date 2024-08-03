@@ -30,6 +30,9 @@
   background-color: #000000;
   border-color: #fff;
 }
+.data__edit:hover {
+  opacity: 60%;
+}
 
 .data__job {
   margin: 0;
@@ -45,6 +48,9 @@
   border-color: #fff;
   margin-top: 75px;
   margin-left: 165px;
+}
+.profile__add:hover {
+  opacity: 60%;
 }
 @media screen and (max-width: 1120px) {
   .profile__avatar {

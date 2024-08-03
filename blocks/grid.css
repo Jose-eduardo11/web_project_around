@@ -32,6 +32,9 @@
   align-items: center;
   padding: 0;
 }
+.grid__button:hover {
+  opacity: 50%;
+}
 
 @media screen and (max-width: 1120px) {
   .grid {

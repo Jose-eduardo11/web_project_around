@@ -16,8 +16,11 @@
   background-color: transparent;
   border: none;
   position: absolute;
-  top: 150px;
-  left: 910px;
+  bottom: 280px;
+  left: 390px;
+}
+.popup__close:hover {
+  opacity: 60%;
 }
 
 .popup__container {
@@ -46,19 +49,19 @@
   flex-direction: column;
   border: none;
   margin: auto;
-  align-items: center;
+  justify-content: left;
 }
 .form__name {
   border: none;
   border-bottom: 1px solid #c4c4c4;
-  width: 358px;
+  width: 100%;
   margin-bottom: 30px;
   color: #c4c4c4;
 }
 .form__about-me {
   border: none;
   border-bottom: 1px solid #c4c4c4;
-  width: 358px;
+  width: 100%;
   margin-bottom: 48px;
   color: #c4c4c4;
 }
@@ -68,4 +71,29 @@
   background-color: transparent;
   color: #c4c4c4;
   border: 1px solid #c4c4c4;
+}
+.form__send_active {
+  background-color: #000000;
+}
+.form__send_active:hover {
+  opacity: 80%;
+}
+
+@media screen and (max-width: 500px) {
+  .popup__container {
+    width: 282px;
+  }
+  .form__name {
+    width: 238px;
+  }
+  .form__about-me {
+    width: 238px;
+  }
+  .form__send {
+    width: 238px;
+  }
+  .popup__close {
+    bottom: 280px;
+    left: 280px;
+  }
 }
