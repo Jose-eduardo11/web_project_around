@@ -16,8 +16,8 @@
   background-color: transparent;
   border: none;
   position: absolute;
-  bottom: 280px;
-  left: 390px;
+  bottom: 300px;
+  left: 400px;
 }
 .popup__close:hover {
   opacity: 60%;
