@@ -9,15 +9,19 @@
   z-index: 99;
   justify-content: center;
 }
+
 .popup_opened {
+  display: flex;
+}
+.popup-agregar {
   display: flex;
 }
 .popup__close {
   background-color: transparent;
   border: none;
   position: absolute;
-  bottom: 300px;
-  left: 400px;
+  top: -30px;
+  right: -30px;
 }
 .popup__close:hover {
   opacity: 60%;
@@ -36,7 +40,24 @@
   transform: translate(-50%, -50%);
   z-index: 100;
 }
-
+.popup__container-card {
+  position: relative;
+  min-width: 250px;
+  display: block;
+  background-color: transparent;
+  z-index: 99;
+  margin: auto;
+}
+.popup__image-container {
+  position: relative;
+  max-width: 75vw;
+  max-height: 75vh;
+}
+.popup__image-title {
+  font-weight: 600;
+  margin: 0;
+  margin-top: 10px;
+}
 .register__title {
   color: #000000;
   font-family: Inter;

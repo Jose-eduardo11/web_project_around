@@ -41,8 +41,16 @@
             <img src="./images/Vector(2).png" alt="mas" />
           </button>
         </section>
-        <section class="grid">
+        <section class="grid" id="card"></section>
+        <template class="grid-template">
           <div class="grid__element-container">
+            <button class="grid__button-trash" type="button">
+              <img
+                class="remove"
+                src="./images/delete-icon.svg"
+                alt="Eliminar carta"
+              />
+            </button>
             <img
               class="grid__element"
               src="./images/kirill-pershin-1088404-unsplash(2).png"
@@ -58,88 +66,8 @@
               />
             </button>
           </div>
-
-          <div class="grid__element-container">
-            <img
-              class="grid__element"
-              src="./images/kirill-pershin-1404681-unsplash.png"
-              alt="lago azul en nevada"
-            />
-            <h2 class="grid__element-text">Lago Louise</h2>
-            <button class="grid__button">
-              <img
-                class="like"
-                src="./images/Group.svg"
-                alt="boton de me gusta"
-              />
-            </button>
-          </div>
-
-          <div class="grid__element-container">
-            <img
-              class="grid__element"
-              src="./images/kirill-pershin-1556355-unsplash.png"
-              alt="destello de atardecer"
-            />
-            <h2 class="grid__element-text">Montañas Calvas</h2>
-            <button class="grid__button">
-              <img
-                class="like"
-                src="./images/Group.svg"
-                alt="boton de me gusta"
-              />
-            </button>
-          </div>
-
-          <div class="grid__element-container">
-            <img
-              class="grid__element"
-              src="./images/kirill-pershin-1404681-unsplash-1.png"
-              alt="Noche en las montañas"
-            />
-            <h2 class="grid__element-text">Latemar</h2>
-            <button class="grid__button">
-              <img
-                class="like"
-                src="./images/Group.svg"
-                alt="boton de me gusta"
-              />
-            </button>
-          </div>
-
-          <div class="grid__element-container">
-            <img
-              class="grid__element"
-              src="./images/kirill-pershin-1556355-unsplash(2).png"
-              alt="lagunas en la mañana"
-            />
-            <h2 class="grid__element-text">Vanois National...</h2>
-            <button class="grid__button">
-              <img
-                class="like"
-                src="./images/Group.svg"
-                alt="boton de me gusta"
-              />
-            </button>
-          </div>
-
-          <div class="grid__element-container">
-            <img
-              class="grid__element"
-              src="./images/kirill-pershin-1088404-unsplash.png"
-              alt="puerto de barcos"
-            />
-            <h2 class="grid__element-text">Lago di Braies</h2>
-            <button class="grid__button">
-              <img
-                class="like"
-                src="./images/Group.svg"
-                alt="boton de me gusta"
-              />
-            </button>
-          </div>
-        </section>
-        <div class="popup">
+        </template>
+        <div class="popup" id="form-profile">
           <form class="popup__container register">
             <h2 class="register__title">Editar perfil</h2>
             <fieldset class="register__form form">
@@ -157,10 +85,47 @@
               />
               <button type="submit" class="form__send">Guardar</button>
             </fieldset>
-            <button class="popup__close">
+            <button class="popup__close" type="button">
               <img src="./images/Close Icon.svg" alt="boton de cerrar" />
             </button>
           </form>
+        </div>
+        <div class="popup" id="form-cards">
+          <form class="popup__container register">
+            <h2 class="register__title register__card">New Place</h2>
+            <fieldset class="register__form form">
+              <input
+                id="name"
+                type="text"
+                class="form__name form__title"
+                placeholder="Title"
+              />
+              <input
+                id="about-me"
+                type="text"
+                class="form__about-me form__url"
+                placeholder="Image URL"
+              />
+              <button type="submit" class="form__send form__send-card">
+                Guardar
+              </button>
+            </fieldset>
+            <button class="popup__close" type="button">
+              <img src="./images/Close Icon.svg" alt="boton de cerrar" />
+            </button>
+          </form>
+        </div>
+        <div class="popup" id="images-card">
+          <div class="popup__container-card">
+            <img
+              class="popup__close"
+              src="./images/Close Icon.svg"
+              alt="boton de cerrar"
+            />
+            <img class="popup__image-container" alt="" src="" />
+
+            <h3 class="popup__image-title"></h3>
+          </div>
         </div>
       </main>
       <footer class="footer">&#169; 2021 Around The U.S.</footer>

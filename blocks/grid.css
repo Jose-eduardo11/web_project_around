@@ -15,13 +15,19 @@
   border-radius: 10px 10px 10px 10px;
 }
 .grid__element {
-  max-width: 100%;
+  width: 100%;
+  height: 282px;
 }
 .grid__element-text {
   font-size: 24px;
   font-weight: 900;
   color: #000000;
   margin-left: 20px;
+  text-align: left;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  width: 240px;
 }
 .grid__button {
   background-color: transparent;
@@ -34,6 +40,23 @@
 }
 .grid__button:hover {
   opacity: 50%;
+}
+.like-active {
+  background-image: url(../images/likeactivo.png);
+  z-index: 200;
+}
+.grid__button-trash {
+  border: none;
+  height: 25px;
+  width: 35px;
+  background-color: transparent;
+  position: absolute;
+  right: 0;
+  top: 5;
+}
+.remove {
+  height: 100%;
+  width: 100%;
 }
 
 @media screen and (max-width: 1120px) {
