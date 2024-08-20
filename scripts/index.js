@@ -17,26 +17,32 @@ const initialCards = [
   {
     name: "Valle de Yosemite",
     link: "https://practicum-content.s3.us-west-1.amazonaws.com/new-markets/WEB_sprint_5/ES/yosemite.jpg",
+    alt: "Valle de Yosemite",
   },
   {
     name: "Lago Louise",
     link: "https://practicum-content.s3.us-west-1.amazonaws.com/new-markets/WEB_sprint_5/ES/lake-louise.jpg",
+    alt: "Lago Louisese",
   },
   {
     name: "Montañas Calvas",
     link: "https://practicum-content.s3.us-west-1.amazonaws.com/new-markets/WEB_sprint_5/ES/bald-mountains.jpg",
+    alt: "Montañas Calvas",
   },
   {
     name: "Latemar",
     link: "https://practicum-content.s3.us-west-1.amazonaws.com/new-markets/WEB_sprint_5/ES/latemar.jpg",
+    alt: "Latemar",
   },
   {
     name: "Parque Nacional de la Vanoise",
     link: "https://practicum-content.s3.us-west-1.amazonaws.com/new-markets/WEB_sprint_5/ES/vanoise.jpg",
+    alt: " Parque Nacional de la Vanoise",
   },
   {
     name: "Lago di Braies",
     link: "https://practicum-content.s3.us-west-1.amazonaws.com/new-markets/WEB_sprint_5/ES/lago.jpg",
+    alt: "Lago di Braies",
   },
 ];
 
@@ -60,10 +66,12 @@ function handleClosePopupAdd() {
 
 profilebuttonClose[1].addEventListener("click", handleClosePopupAdd);
 
-function handleOpenImage(title, link) {
+function handleOpenImage(title, link, alt) {
   imagePopup.classList.add("popup_opened");
   imageTitle.textContent = title;
   imageSrc.src = link;
+  imageTitle.alt = alt;
+  console.log("El alt es: " + imageTitle.alt);
 }
 function handleCloseImage() {
   imagePopup.classList.remove("popup_opened");
@@ -92,25 +100,41 @@ formElement.addEventListener("submit", function (evt) {
 
 const nameInput = document.querySelector(".form__name");
 const jobInput = document.querySelector(".form__about-me");
-const submitactive = document.querySelector(".form__send");
+const profileButton = document.querySelector("#edit-submit");
+const cardButton = document.querySelector("#card-submit");
 
 function saveData() {
   const nameValue = nameInput.value;
   const jobValue = jobInput.value;
 
   if (nameValue != "" && jobValue != "") {
-    submitactive.classList.add("form__send_active");
+    profileButton.classList.add("form__send_active");
   } else {
-    submitactive.classList.remove("form__send_active");
+    profileButton.classList.remove("form__send_active");
   }
 }
 
 nameInput.addEventListener("input", saveData);
 jobInput.addEventListener("input", saveData);
+const nameInputCard = document.querySelector(".form__title");
+const jobInputCard = document.querySelector(".form__url");
+function saveDataCard() {
+  const nameValue = nameInput.value;
+  const jobValue = jobInput.value;
+
+  if (nameValue != "" && jobValue != "") {
+    cardButton.classList.add("form__send_active");
+  } else {
+    cardButton.classList.remove("form__send_active");
+  }
+}
+
+nameInputCard.addEventListener("input", saveDataCard);
+jobInputCard.addEventListener("input", saveDataCard);
 
 // Resto del codigo sprint 8
 
-function createCard(name, link) {
+function createCard(name, link, alt) {
   const card = cardTemplate
     .querySelector(".grid__element-container")
     .cloneNode(true);
@@ -122,7 +146,7 @@ function createCard(name, link) {
   const likeButton = card.querySelector(".grid__button");
   const likeImage = card.querySelector(".like");
   cardImage.addEventListener("click", function () {
-    handleOpenImage(name, link);
+    handleOpenImage(name, link, alt);
   });
   function removeButtonUnlike() {
     likeImage.classList.remove("grid__button");
@@ -142,7 +166,7 @@ function createCard(name, link) {
 }
 
 initialCards.forEach(function (item) {
-  createCard(item.name, item.link);
+  createCard(item.name, item.link, item.alt);
 });
 
 cardPopup.addEventListener("submit", function (evt) {
@@ -151,7 +175,9 @@ cardPopup.addEventListener("submit", function (evt) {
   const cardUrlInput = document.querySelector(".form__url");
   const titleValue = cardTitleInput.value;
   const imageValue = cardUrlInput.value;
-  createCard(titleValue, imageValue);
+  const cardAlt = cardTitleInput.value;
+
+  createCard(titleValue, imageValue, cardAlt);
   handleClosePopupAdd();
 });
 
