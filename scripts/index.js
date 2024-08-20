@@ -13,6 +13,11 @@ const cardTemplate = document.querySelector(".grid-template").content;
 const cardContent = document.querySelector(".grid");
 const cardAddSubmit = document.querySelector(".form__send-card");
 
+const nameInput = document.querySelector(".form__name");
+const jobInput = document.querySelector(".form__about-me");
+const profileButton = document.querySelector("#edit-submit");
+const cardButton = document.querySelector("#card-submit");
+
 const initialCards = [
   {
     name: "Valle de Yosemite",
@@ -46,8 +51,6 @@ const initialCards = [
   },
 ];
 
-// Funciones y llamado de los botones de abrir y cerrar
-
 profilePopupButton.addEventListener("click", function () {
   profilePopup.classList.add("popup_opened");
 });
@@ -71,13 +74,11 @@ function handleOpenImage(title, link, alt) {
   imageTitle.textContent = title;
   imageSrc.src = link;
   imageTitle.alt = alt;
-  console.log("El alt es: " + imageTitle.alt);
 }
 function handleCloseImage() {
   imagePopup.classList.remove("popup_opened");
 }
 profilebuttonClose[2].addEventListener("click", handleCloseImage);
-// Funcion para manejar el envio del formulario
 
 const formElement = document.querySelector(".popup__container");
 
@@ -96,13 +97,6 @@ formElement.addEventListener("submit", function (evt) {
   handleClosePopup();
 });
 
-// Funcion para habilitar un boton cuando los campos estan rellenos
-
-const nameInput = document.querySelector(".form__name");
-const jobInput = document.querySelector(".form__about-me");
-const profileButton = document.querySelector("#edit-submit");
-const cardButton = document.querySelector("#card-submit");
-
 function saveData() {
   const nameValue = nameInput.value;
   const jobValue = jobInput.value;
@@ -119,8 +113,8 @@ jobInput.addEventListener("input", saveData);
 const nameInputCard = document.querySelector(".form__title");
 const jobInputCard = document.querySelector(".form__url");
 function saveDataCard() {
-  const nameValue = nameInput.value;
-  const jobValue = jobInput.value;
+  const nameValue = nameInputCard.value;
+  const jobValue = jobInputCard.value;
 
   if (nameValue != "" && jobValue != "") {
     cardButton.classList.add("form__send_active");
@@ -131,8 +125,6 @@ function saveDataCard() {
 
 nameInputCard.addEventListener("input", saveDataCard);
 jobInputCard.addEventListener("input", saveDataCard);
-
-// Resto del codigo sprint 8
 
 function createCard(name, link, alt) {
   const card = cardTemplate
@@ -180,5 +172,3 @@ cardPopup.addEventListener("submit", function (evt) {
   createCard(titleValue, imageValue, cardAlt);
   handleClosePopupAdd();
 });
-
-//like buttom
