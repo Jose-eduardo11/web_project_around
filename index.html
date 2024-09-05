@@ -68,21 +68,29 @@
           </div>
         </template>
         <div class="popup" id="form-profile">
-          <form class="popup__container register">
+          <form class="popup__form register" id="register-profile">
             <h2 class="register__title">Editar perfil</h2>
             <fieldset class="register__form form">
               <input
                 id="name"
                 type="text"
-                class="form__name"
+                class="popup__input"
+                minlength="2"
+                maxlength="40"
+                value="Jacques Cousteau"
                 placeholder="Nombre"
               />
+              <span class="popup__input_type_error"></span>
               <input
                 id="about-me"
                 type="text"
-                class="form__about-me"
+                class="popup__input form__about-me"
+                minlength="2"
+                maxlength="200"
+                value="Explorador"
                 placeholder="Acerca de mi"
               />
+              <span class="popup__input_type_error"></span>
               <button type="submit" id="edit-submit" class="form__send">
                 Guardar
               </button>
@@ -93,21 +101,25 @@
           </form>
         </div>
         <div class="popup" id="form-cards">
-          <form class="popup__container register">
+          <form class="popup__form register" id="register-cards">
             <h2 class="register__title register__card">New Place</h2>
             <fieldset class="register__form form">
               <input
-                id="name"
+                id="title"
                 type="text"
-                class="form__name form__title"
+                class="popup__input form__title"
+                minlength="2"
+                maxlength="30"
                 placeholder="Title"
               />
+              <span class="popup__input-span title-error"></span>
               <input
-                id="about-me"
-                type="text"
-                class="form__about-me form__url"
+                id="url"
+                type="url"
+                class="popup__input form__url"
                 placeholder="Image URL"
               />
+              <span class="popup__input-span url-error"></span>
               <button
                 type="submit"
                 id="card-submit"
@@ -136,6 +148,7 @@
       </main>
       <footer class="footer">&#169; 2021 Around The U.S.</footer>
     </div>
+    <script src="./scripts/validate.js"></script>
     <script src="./scripts/index.js"></script>
   </body>
 </html>

@@ -27,7 +27,7 @@
   opacity: 60%;
 }
 
-.popup__container {
+.popup__form {
   background-color: #fff;
   max-width: 430px;
   border-radius: 10px;
@@ -39,6 +39,12 @@
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 100;
+}
+.form__input_type_error {
+  color: red;
+}
+.form__input-error_active {
+  color: red;
 }
 .popup__container-card {
   position: relative;
@@ -72,7 +78,7 @@
   margin: auto;
   justify-content: left;
 }
-.form__name {
+.popup__input {
   border: none;
   border-bottom: 1px solid #c4c4c4;
   width: 100%;
@@ -101,10 +107,10 @@
 }
 
 @media screen and (max-width: 500px) {
-  .popup__container {
+  .popup__form {
     width: 282px;
   }
-  .form__name {
+  .popup__input {
     width: 238px;
   }
   .form__about-me {

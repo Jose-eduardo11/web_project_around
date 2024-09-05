@@ -2,21 +2,20 @@
 const profilePopupButton = document.querySelector(".data__edit");
 const profilePopupAdd = document.querySelector(".profile__add");
 const profilebuttonClose = document.querySelectorAll(".popup__close");
-
 const profilePopup = document.querySelector("#form-profile");
 const imagePopup = document.querySelector("#images-card");
 const cardPopup = document.querySelector("#form-cards");
 const imageSrc = document.querySelector(".popup__image-container");
 const imageTitle = document.querySelector(".popup__image-title");
-
 const cardTemplate = document.querySelector(".grid-template").content;
 const cardContent = document.querySelector(".grid");
 const cardAddSubmit = document.querySelector(".form__send-card");
-
-const nameInput = document.querySelector(".form__name");
+const nameInput = document.querySelector(".popup__input");
 const jobInput = document.querySelector(".form__about-me");
 const profileButton = document.querySelector("#edit-submit");
 const cardButton = document.querySelector("#card-submit");
+const nameInputCard = document.querySelector(".form__title");
+const jobInputCard = document.querySelector(".form__url");
 
 const initialCards = [
   {
@@ -80,12 +79,12 @@ function handleCloseImage() {
 }
 profilebuttonClose[2].addEventListener("click", handleCloseImage);
 
-const formElement = document.querySelector(".popup__container");
+const formElement = document.querySelector(".popup__form");
 
 formElement.addEventListener("submit", function (evt) {
   evt.preventDefault();
 
-  const nameInput = document.querySelector(".form__name");
+  const nameInput = document.querySelector(".popup__input");
   const jobInput = document.querySelector(".form__about-me");
   const profilename = document.querySelector(".data__name");
   const profilejob = document.querySelector(".data__job");
@@ -110,8 +109,7 @@ function saveData() {
 
 nameInput.addEventListener("input", saveData);
 jobInput.addEventListener("input", saveData);
-const nameInputCard = document.querySelector(".form__title");
-const jobInputCard = document.querySelector(".form__url");
+
 function saveDataCard() {
   const nameValue = nameInputCard.value;
   const jobValue = jobInputCard.value;
