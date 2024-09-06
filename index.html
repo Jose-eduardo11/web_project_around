@@ -77,10 +77,11 @@
                 class="popup__input"
                 minlength="2"
                 maxlength="40"
+                required
                 value="Jacques Cousteau"
                 placeholder="Nombre"
               />
-              <span class="popup__input_type_error"></span>
+              <span class="popup__input_type_error name-error"></span>
               <input
                 id="about-me"
                 type="text"
@@ -88,9 +89,10 @@
                 minlength="2"
                 maxlength="200"
                 value="Explorador"
+                required
                 placeholder="Acerca de mi"
               />
-              <span class="popup__input_type_error"></span>
+              <span class="popup__input_type_error about-me-error"></span>
               <button type="submit" id="edit-submit" class="form__send">
                 Guardar
               </button>
@@ -110,6 +112,7 @@
                 class="popup__input form__title"
                 minlength="2"
                 maxlength="30"
+                required
                 placeholder="Title"
               />
               <span class="popup__input-span title-error"></span>
@@ -117,6 +120,7 @@
                 id="url"
                 type="url"
                 class="popup__input form__url"
+                required
                 placeholder="Image URL"
               />
               <span class="popup__input-span url-error"></span>

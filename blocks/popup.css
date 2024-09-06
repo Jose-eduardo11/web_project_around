@@ -42,9 +42,11 @@
 }
 .form__input_type_error {
   color: red;
+  margin: 0;
 }
 .form__input-error_active {
   color: red;
+  margin: 0;
 }
 .popup__container-card {
   position: relative;

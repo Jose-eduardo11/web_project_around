@@ -1,6 +1,7 @@
 // Variables
 const profilePopupButton = document.querySelector(".data__edit");
 const profilePopupAdd = document.querySelector(".profile__add");
+const displayWindow = document.querySelectorAll(".popup");
 const profilebuttonClose = document.querySelectorAll(".popup__close");
 const profilePopup = document.querySelector("#form-profile");
 const imagePopup = document.querySelector("#images-card");
@@ -16,7 +17,7 @@ const profileButton = document.querySelector("#edit-submit");
 const cardButton = document.querySelector("#card-submit");
 const nameInputCard = document.querySelector(".form__title");
 const jobInputCard = document.querySelector(".form__url");
-
+console.log(displayWindow);
 const initialCards = [
   {
     name: "Valle de Yosemite",
@@ -49,7 +50,15 @@ const initialCards = [
     alt: "Lago di Braies",
   },
 ];
-
+function handleEscPopup(evt) {
+  if (evt.key === "Escape") {
+    const openPopup = document.querySelector(".popup_opened");
+    if (openPopup) {
+      openPopup.classList.remove("popup_opened");
+    }
+  }
+}
+document.addEventListener("keydown", handleEscPopup);
 profilePopupButton.addEventListener("click", function () {
   profilePopup.classList.add("popup_opened");
 });
@@ -57,22 +66,24 @@ function handleClosePopup() {
   profilePopup.classList.remove("popup_opened");
 }
 profilebuttonClose[0].addEventListener("click", handleClosePopup);
+displayWindow[0].addEventListener("dblclick", handleClosePopup);
 
 profilePopupAdd.addEventListener("click", function () {
-  cardPopup.classList.add("popup-agregar");
+  cardPopup.classList.add("popup_opened");
 });
 
 function handleClosePopupAdd() {
-  cardPopup.classList.remove("popup-agregar");
+  cardPopup.classList.remove("popup_opened");
 }
 
 profilebuttonClose[1].addEventListener("click", handleClosePopupAdd);
+displayWindow[1].addEventListener("dblclick", handleClosePopupAdd);
 
 function handleOpenImage(title, link, alt) {
   imagePopup.classList.add("popup_opened");
   imageTitle.textContent = title;
   imageSrc.src = link;
-  imageTitle.alt = alt;
+  imageSrc.alt = alt;
 }
 function handleCloseImage() {
   imagePopup.classList.remove("popup_opened");
