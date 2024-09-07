@@ -1,3 +1,4 @@
+import { resetValidation } from "./validate.js";
 // Variables
 const profilePopupButton = document.querySelector(".data__edit");
 const profilePopupAdd = document.querySelector(".profile__add");
@@ -17,7 +18,6 @@ const profileButton = document.querySelector("#edit-submit");
 const cardButton = document.querySelector("#card-submit");
 const nameInputCard = document.querySelector(".form__title");
 const jobInputCard = document.querySelector(".form__url");
-console.log(displayWindow);
 const initialCards = [
   {
     name: "Valle de Yosemite",
@@ -62,22 +62,36 @@ document.addEventListener("keydown", handleEscPopup);
 profilePopupButton.addEventListener("click", function () {
   profilePopup.classList.add("popup_opened");
 });
-function handleClosePopup() {
+function handleClosePopup(evt) {
   profilePopup.classList.remove("popup_opened");
+  resetValidation({
+    formSelector: ".popup__form",
+    inputSelector: ".popup__input",
+    submitButtonSelector: ".form__send",
+    inactiveButtonClass: "popup__button_disabled",
+    inputErrorClass: "popup__input_type_error",
+    errorClass: "popup__error_visible",
+  });
 }
 profilebuttonClose[0].addEventListener("click", handleClosePopup);
-displayWindow[0].addEventListener("dblclick", handleClosePopup);
 
 profilePopupAdd.addEventListener("click", function () {
   cardPopup.classList.add("popup_opened");
 });
 
-function handleClosePopupAdd() {
+function handleClosePopupAdd(evt) {
   cardPopup.classList.remove("popup_opened");
+  resetValidation({
+    formSelector: ".popup__form",
+    inputSelector: ".popup__input",
+    submitButtonSelector: ".form__send",
+    inactiveButtonClass: "popup__button_disabled",
+    inputErrorClass: "popup__input_type_error",
+    errorClass: "popup__error_visible",
+  });
 }
 
 profilebuttonClose[1].addEventListener("click", handleClosePopupAdd);
-displayWindow[1].addEventListener("dblclick", handleClosePopupAdd);
 
 function handleOpenImage(title, link, alt) {
   imagePopup.classList.add("popup_opened");
@@ -106,34 +120,6 @@ formElement.addEventListener("submit", function (evt) {
   profilejob.textContent = jobValue;
   handleClosePopup();
 });
-
-function saveData() {
-  const nameValue = nameInput.value;
-  const jobValue = jobInput.value;
-
-  if (nameValue != "" && jobValue != "") {
-    profileButton.classList.add("form__send_active");
-  } else {
-    profileButton.classList.remove("form__send_active");
-  }
-}
-
-nameInput.addEventListener("input", saveData);
-jobInput.addEventListener("input", saveData);
-
-function saveDataCard() {
-  const nameValue = nameInputCard.value;
-  const jobValue = jobInputCard.value;
-
-  if (nameValue != "" && jobValue != "") {
-    cardButton.classList.add("form__send_active");
-  } else {
-    cardButton.classList.remove("form__send_active");
-  }
-}
-
-nameInputCard.addEventListener("input", saveDataCard);
-jobInputCard.addEventListener("input", saveDataCard);
 
 function createCard(name, link, alt) {
   const card = cardTemplate
@@ -179,5 +165,16 @@ cardPopup.addEventListener("submit", function (evt) {
   const cardAlt = cardTitleInput.value;
 
   createCard(titleValue, imageValue, cardAlt);
+  cardTitleInput.value = "";
+  cardUrlInput.value = "";
+
   handleClosePopupAdd();
+});
+displayWindow.forEach(function (popup) {
+  popup.addEventListener("click", function (evt) {
+    console.log(evt.target);
+    if (evt.target === popup) {
+      popup.classList.remove("popup_opened");
+    }
+  });
 });

@@ -97,12 +97,12 @@
 .form__send {
   width: 358px;
   height: 50px;
-  background-color: transparent;
-  color: #c4c4c4;
+  background-color: black;
+  color: white;
   border: 1px solid #c4c4c4;
 }
-.form__send_active {
-  background-color: #000000;
+.form__send[disabled] {
+  background-color: #c4c4c4;
 }
 .form__send_active:hover {
   opacity: 80%;
