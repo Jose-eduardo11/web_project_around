@@ -1,4 +1,5 @@
 import { resetValidation } from "./validate.js";
+import Card from "./card.js";
 // Variables
 const profilePopupButton = document.querySelector(".data__edit");
 const profilePopupAdd = document.querySelector(".profile__add");
@@ -178,3 +179,12 @@ displayWindow.forEach(function (popup) {
     }
   });
 });
+
+const instanceCard = new Card(
+  "instancia1",
+  "https://dam.ngenespanol.com/wp-content/uploads/2020/12/nutrias-tienen-piedra-favorita.jpg"
+);
+// instanceCard.setProperties();
+instanceCard.setCard();
+console.log(instanceCard);
+cardContent.prepend(instanceCard.htmlCard);
