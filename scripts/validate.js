@@ -36,7 +36,6 @@ const setEventListeners = (formElement, settings) => {
   const inputList = Array.from(
     formElement.querySelectorAll(settings.inputSelector)
   );
-  console.log("inputList--", inputList);
 
   const submitButton = formElement.querySelector(settings.submitButtonSelector);
 
@@ -52,7 +51,6 @@ const setEventListeners = (formElement, settings) => {
 function enableValidation(settings) {
   const formList = Array.from(document.querySelectorAll(settings.formSelector));
 
-  console.log("formlist---", formList);
   formList.forEach((formElement) => {
     formElement.addEventListener("submit", function (evt) {
       evt.preventDefault();
@@ -73,7 +71,6 @@ enableValidation({
 export const resetValidation = (settings) => {
   const formList = Array.from(document.querySelectorAll(settings.formSelector));
 
-  console.log("formlist---", formList);
   formList.forEach((formElement) => {
     formElement.reset();
     const submitButton = formElement.querySelector(

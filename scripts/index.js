@@ -1,5 +1,6 @@
-import { resetValidation } from "./validate.js";
+// import { resetValidation } from "./validate.js";
 import Card from "./card.js";
+import FormValidatorq from "./formvalidator.js";
 // Variables
 const profilePopupButton = document.querySelector(".data__edit");
 const profilePopupAdd = document.querySelector(".profile__add");
@@ -154,6 +155,7 @@ function createCard(name, link, alt) {
 }
 
 initialCards.forEach(function (item) {
+  const newCard = new Card(item.name, item.link);
   createCard(item.name, item.link, item.alt);
 });
 
@@ -173,7 +175,6 @@ cardPopup.addEventListener("submit", function (evt) {
 });
 displayWindow.forEach(function (popup) {
   popup.addEventListener("click", function (evt) {
-    console.log(evt.target);
     if (evt.target === popup) {
       popup.classList.remove("popup_opened");
     }
@@ -185,6 +186,9 @@ const instanceCard = new Card(
   "https://dam.ngenespanol.com/wp-content/uploads/2020/12/nutrias-tienen-piedra-favorita.jpg"
 );
 // instanceCard.setProperties();
-instanceCard.setCard();
-console.log(instanceCard);
+console.log("instance card-->", instanceCard.cardlikeButton);
+instanceCard.getCard();
+
 cardContent.prepend(instanceCard.htmlCard);
+
+const validationProfile = new FormValidator();

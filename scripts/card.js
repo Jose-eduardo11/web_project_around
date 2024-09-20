@@ -5,31 +5,40 @@ export default class Card {
     this.link = link;
   }
   getTemplate() {
-    console.log(cardTemplate);
-    return cardTemplate.querySelector(".grid__element-container").cloneNode;
+    return cardTemplate
+      .querySelector(".grid__element-container")
+      .cloneNode(true);
+  }
+
+  toggleLike() {
+    this.cardlikeButton.classList.toggle(".like-active");
+  }
+  removeCard() {
+    this.htmlCard.remove();
+  }
+  openModalCard() {
+    this.openModalCard(this.name, this.link);
+  }
+  setEventListener() {
+    this.cardlikeButton.addEventListener("click", () => {
+      this.toggleLike();
+    });
+    this.cardDeleteButton.addEventListener("click", () => {
+      this.removeCard();
+    });
+  }
+  getCard() {
+    this.setProperties();
+    this.setEventListener();
+    return this.htmlCard;
   }
   setProperties() {
     this.htmlCard = this.getTemplate();
-    console.log(this.htmlCard);
     this.cardImage = this.htmlCard.querySelector(".grid__element");
     this.cardTitle = this.htmlCard.querySelector(".grid__element-text");
     this.cardlikeButton = this.htmlCard.querySelector(".grid__button");
     this.cardDeleteButton = this.htmlCard.querySelector(".grid__button-trash");
     this.cardTitle.textContent = this.name;
     this.cardImage.src = this.link;
-  }
-
-  toggleLike() {
-    this.cardlikeButton.classList.toggle(".like-active");
-  }
-  setEventListener() {
-    this.cardlikeButton.addEventListener("click", function () {
-      this.toggleLike();
-    });
-  }
-  setCard() {
-    this.setProperties();
-    this.setEventListener();
-    return this.htmlCard;
   }
 }
