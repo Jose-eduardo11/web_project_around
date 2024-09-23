@@ -11,7 +11,7 @@ export default class Card {
   }
 
   toggleLike() {
-    this.cardlikeButton.classList.toggle(".like-active");
+    this.cardlikeButton.classList.toggle("like-active");
   }
   removeCard() {
     this.htmlCard.remove();

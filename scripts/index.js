@@ -1,79 +1,36 @@
 // import { resetValidation } from "./validate.js";
 import Card from "./card.js";
-import FormValidatorq from "./formvalidator.js";
-// Variables
+import FormValidator from "./formvalidator.js";
+import {
+  initialCards,
+  handleEscPopup,
+  handleClosePopupAdd,
+  handleOpenImage,
+  handleCloseImage,
+} from "./utils.js";
 const profilePopupButton = document.querySelector(".data__edit");
 const profilePopupAdd = document.querySelector(".profile__add");
 const displayWindow = document.querySelectorAll(".popup");
 const profilebuttonClose = document.querySelectorAll(".popup__close");
 const profilePopup = document.querySelector("#form-profile");
-const imagePopup = document.querySelector("#images-card");
 const cardPopup = document.querySelector("#form-cards");
-const imageSrc = document.querySelector(".popup__image-container");
-const imageTitle = document.querySelector(".popup__image-title");
 const cardTemplate = document.querySelector(".grid-template").content;
 const cardContent = document.querySelector(".grid");
-const cardAddSubmit = document.querySelector(".form__send-card");
-const nameInput = document.querySelector(".popup__input");
-const jobInput = document.querySelector(".form__about-me");
-const profileButton = document.querySelector("#edit-submit");
-const cardButton = document.querySelector("#card-submit");
-const nameInputCard = document.querySelector(".form__title");
-const jobInputCard = document.querySelector(".form__url");
-const initialCards = [
-  {
-    name: "Valle de Yosemite",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/new-markets/WEB_sprint_5/ES/yosemite.jpg",
-    alt: "Valle de Yosemite",
-  },
-  {
-    name: "Lago Louise",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/new-markets/WEB_sprint_5/ES/lake-louise.jpg",
-    alt: "Lago Louisese",
-  },
-  {
-    name: "Montañas Calvas",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/new-markets/WEB_sprint_5/ES/bald-mountains.jpg",
-    alt: "Montañas Calvas",
-  },
-  {
-    name: "Latemar",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/new-markets/WEB_sprint_5/ES/latemar.jpg",
-    alt: "Latemar",
-  },
-  {
-    name: "Parque Nacional de la Vanoise",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/new-markets/WEB_sprint_5/ES/vanoise.jpg",
-    alt: " Parque Nacional de la Vanoise",
-  },
-  {
-    name: "Lago di Braies",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/new-markets/WEB_sprint_5/ES/lago.jpg",
-    alt: "Lago di Braies",
-  },
-];
-function handleEscPopup(evt) {
-  if (evt.key === "Escape") {
-    const openPopup = document.querySelector(".popup_opened");
-    if (openPopup) {
-      openPopup.classList.remove("popup_opened");
-    }
-  }
-}
+// const cardAddSubmit = document.querySelector(".form__send-card");
+// const nameInput = document.querySelector(".popup__input");
+// const jobInput = document.querySelector(".form__about-me");
+// const profileButton = document.querySelector("#edit-submit");
+// const cardButton = document.querySelector("#card-submit");
+// const nameInputCard = document.querySelector(".form__title");
+// const jobInputCard = document.querySelector(".form__url");
+
 document.addEventListener("keydown", handleEscPopup);
 profilePopupButton.addEventListener("click", function () {
   profilePopup.classList.add("popup_opened");
 });
 function handleClosePopup(evt) {
   profilePopup.classList.remove("popup_opened");
-  resetValidation({
-    formSelector: ".popup__form",
-    inputSelector: ".popup__input",
-    submitButtonSelector: ".form__send",
-    inactiveButtonClass: "popup__button_disabled",
-    inputErrorClass: "popup__input_type_error",
-    errorClass: "popup__error_visible",
-  });
+  validationProfile.resetValidation();
 }
 profilebuttonClose[0].addEventListener("click", handleClosePopup);
 
@@ -81,29 +38,8 @@ profilePopupAdd.addEventListener("click", function () {
   cardPopup.classList.add("popup_opened");
 });
 
-function handleClosePopupAdd(evt) {
-  cardPopup.classList.remove("popup_opened");
-  resetValidation({
-    formSelector: ".popup__form",
-    inputSelector: ".popup__input",
-    submitButtonSelector: ".form__send",
-    inactiveButtonClass: "popup__button_disabled",
-    inputErrorClass: "popup__input_type_error",
-    errorClass: "popup__error_visible",
-  });
-}
-
 profilebuttonClose[1].addEventListener("click", handleClosePopupAdd);
 
-function handleOpenImage(title, link, alt) {
-  imagePopup.classList.add("popup_opened");
-  imageTitle.textContent = title;
-  imageSrc.src = link;
-  imageSrc.alt = alt;
-}
-function handleCloseImage() {
-  imagePopup.classList.remove("popup_opened");
-}
 profilebuttonClose[2].addEventListener("click", handleCloseImage);
 
 const formElement = document.querySelector(".popup__form");
@@ -156,7 +92,8 @@ function createCard(name, link, alt) {
 
 initialCards.forEach(function (item) {
   const newCard = new Card(item.name, item.link);
-  createCard(item.name, item.link, item.alt);
+  newCard.getCard();
+  cardContent.prepend(newCard.htmlCard);
 });
 
 cardPopup.addEventListener("submit", function (evt) {
@@ -181,14 +118,20 @@ displayWindow.forEach(function (popup) {
   });
 });
 
-const instanceCard = new Card(
-  "instancia1",
-  "https://dam.ngenespanol.com/wp-content/uploads/2020/12/nutrias-tienen-piedra-favorita.jpg"
-);
-// instanceCard.setProperties();
-console.log("instance card-->", instanceCard.cardlikeButton);
+const instanceCard = new Card(name, link);
+
 instanceCard.getCard();
-
 cardContent.prepend(instanceCard.htmlCard);
+const settings = {
+  formSelector: ".popup__form",
+  inputSelector: ".popup__input",
+  submitButtonSelector: ".form__send",
+  inactiveButtonClass: "popup__button_disabled",
+  inputErrorClass: "popup__input_type_error",
+  errorClass: "popup__error_visible",
+};
 
-const validationProfile = new FormValidator();
+const validationProfile = new FormValidator(profilePopup, settings);
+const validationProfileCard = new FormValidator(cardPopup, settings);
+validationProfile.enableValidation();
+validationProfileCard.enableValidation();

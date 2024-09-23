@@ -44,6 +44,7 @@
 .like-active {
   background-image: url(../images/likeactivo.png);
   z-index: 200;
+  background-repeat: no-repeat;
 }
 .grid__button-trash {
   border: none;
