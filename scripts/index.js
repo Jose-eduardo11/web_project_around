@@ -118,10 +118,6 @@ displayWindow.forEach(function (popup) {
   });
 });
 
-const instanceCard = new Card(name, link);
-
-instanceCard.getCard();
-cardContent.prepend(instanceCard.htmlCard);
 const settings = {
   formSelector: ".popup__form",
   inputSelector: ".popup__input",

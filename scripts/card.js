@@ -1,3 +1,5 @@
+import { handleOpenImage } from "./utils.js";
+
 const cardTemplate = document.querySelector(".grid-template").content;
 export default class Card {
   constructor(name, link) {
@@ -25,6 +27,10 @@ export default class Card {
     });
     this.cardDeleteButton.addEventListener("click", () => {
       this.removeCard();
+    });
+    this.cardImage.addEventListener("click", () => {
+      console.log("que se abra el popup");
+      handleOpenImage(this.name, this.link, this.name);
     });
   }
   getCard() {
