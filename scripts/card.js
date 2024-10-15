@@ -2,9 +2,10 @@ import { handleOpenImage } from "./utils.js";
 
 const cardTemplate = document.querySelector(".grid-template").content;
 export default class Card {
-  constructor(name, link) {
+  constructor(name, link, handleClickImage) {
     this.name = name;
     this.link = link;
+    this.handleClickImage = handleClickImage;
   }
   getTemplate() {
     return cardTemplate
@@ -30,12 +31,13 @@ export default class Card {
     });
     this.cardImage.addEventListener("click", () => {
       console.log("que se abra el popup");
-      handleOpenImage(this.name, this.link, this.name);
+      this.handleClickImage(this.name, this.link, this.name);
     });
   }
   getCard() {
     this.setProperties();
     this.setEventListener();
+    console.log(this.htmlCard);
     return this.htmlCard;
   }
   setProperties() {
