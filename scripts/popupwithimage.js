@@ -13,3 +13,5 @@ export default class popupwithImage extends popup {
     this.imageElement.src = link;
   }
 }
+
+// section, card y popupwithimage bien

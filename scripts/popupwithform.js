@@ -14,15 +14,8 @@ export default class popupwithform extends popup {
     return values;
   }
 
-  SetEventListeners() {
-    this.closeButton.addEventListener("click", () => {
-      this.close();
-    });
-    this.popupElement.addEventListener("click", (evt) => {
-      if (this.handleclickOutside(evt)) {
-        console.log("click por fuera");
-        this.close();
-      }
-    });
+  setEventListeners() {
+    super.setEventListeners();
+    //falta el submit
   }
 }

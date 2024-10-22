@@ -19,9 +19,7 @@ export default class Card {
   removeCard() {
     this.htmlCard.remove();
   }
-  openModalCard() {
-    this.openModalCard(this.name, this.link);
-  }
+
   setEventListener() {
     this.cardlikeButton.addEventListener("click", () => {
       this.toggleLike();

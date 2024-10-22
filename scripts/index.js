@@ -28,10 +28,6 @@ profilePopupAdd.addEventListener("click", () => {
 
 const formElement = document.querySelector(".popup__form");
 
-// const UserInfo = new UserInfo({
-//   nameSelector: ".data__name",
-//   jobSelector: ".data__job",
-// });
 formElement.addEventListener("submit", function (evt) {
   evt.preventDefault();
 
@@ -44,8 +40,9 @@ formElement.addEventListener("submit", function (evt) {
   const jobValue = jobInput.value;
   profilename.textContent = nameValue;
   profilejob.textContent = jobValue;
-  handleClosePopup();
+  popupProfile.close();
 });
+
 new Section(
   {
     items: initialCards,
@@ -67,10 +64,11 @@ cardPopup.addEventListener("submit", function (evt) {
   const imageValue = cardUrlInput.value;
   const cardAlt = cardTitleInput.value;
 
-  createCard(titleValue, imageValue, cardAlt);
+  const card = new Card(titleValue, imageValue, () => {}).getCard();
+  const cardContainer = document.querySelector(".grid");
+  cardContainer.prepend(card);
   cardTitleInput.value = "";
   cardUrlInput.value = "";
-
   handleClosePopupAdd();
 });
 
