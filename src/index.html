@@ -6,7 +6,6 @@
     <meta name="description" content="este es mi primer javascrip" />
     <meta name="author" content="Jose Eduardo Cristobal" />
     <meta name="keywords" content=" responsivo , proyecto , javascrip" />
-    <link rel="stylesheet" href="./pages/index.css" />
     <title>explorador</title>
   </head>
   <body>
@@ -14,7 +13,7 @@
       <header class="header">
         <img
           class="header__logo"
-          src="./images/Vector.png"
+          src="<%=require('./images/Vector.png')%>"
           alt="logo de la pagina con la palabra (around the U.S)"
         />
         <hr class="header__line" />
@@ -24,21 +23,21 @@
         <section class="profile">
           <img
             class="profile__avatar"
-            src="./images/image.jpg"
+            src="<%=require('./images/image.jpg')%>"
             alt="aqui va tu foto de perfil"
           />
           <div class="profile__data data">
             <div class="profile__data-container">
               <h2 class="data__name">Jacques Cousteau</h2>
               <button class="data__edit">
-                <img src="./images/Vector(1).png" alt="lapiz" />
+                <img src="<%=require('./images/Vector(1).png')%>" alt="lapiz" />
               </button>
             </div>
             <p class="data__job">Explorador</p>
           </div>
 
           <button class="profile__add">
-            <img src="./images/Vector(2).png" alt="mas" />
+            <img src=" <%=require('./images/Vector(2).png')%>" alt="mas" />
           </button>
         </section>
         <section class="grid" id="card"></section>
@@ -47,13 +46,13 @@
             <button class="grid__button-trash" type="button">
               <img
                 class="remove"
-                src="./images/delete-icon.svg"
+                src="<%=require('./images/delete-icon.svg')%>"
                 alt="Eliminar carta"
               />
             </button>
             <img
               class="grid__element"
-              src="./images/kirill-pershin-1088404-unsplash(2).png"
+              src="<%=require('./images/kirill-pershin-1088404-unsplash(2).png')%>"
               alt="Bosque en invierno"
             />
             <h2 class="grid__element-text">Valle de Yosemite</h2>
@@ -61,7 +60,7 @@
             <button class="grid__button">
               <img
                 class="like"
-                src="./images/Group.svg"
+                src="<%=require('./images/Group.svg')%>"
                 alt="boton de me gusta"
               />
             </button>
@@ -98,7 +97,10 @@
               </button>
             </fieldset>
             <button class="popup__close" type="button">
-              <img src="./images/Close Icon.svg" alt="boton de cerrar" />
+              <img
+                src="<%=require('./images/Close_Icon.svg')%>"
+                alt="boton de cerrar"
+              />
             </button>
           </form>
         </div>
@@ -133,7 +135,10 @@
               </button>
             </fieldset>
             <button class="popup__close" type="button">
-              <img src="./images/Close Icon.svg" alt="boton de cerrar" />
+              <img
+                src="<%=require('./images/Close_Icon.svg')%>"
+                alt="boton de cerrar"
+              />
             </button>
           </form>
         </div>
@@ -141,7 +146,7 @@
           <div class="popup__container-card">
             <img
               class="popup__close"
-              src="./images/Close Icon.svg"
+              src="<%=require('./images/Close_Icon.svg')%>"
               alt="boton de cerrar"
             />
             <img class="popup__image-container" alt="" src="" />
@@ -152,6 +157,6 @@
       </main>
       <footer class="footer">&#169; 2021 Around The U.S.</footer>
     </div>
-    <script type="module" src="./scripts/index.js"></script>
+    <script type="module" src="./src/index.js"></script>
   </body>
 </html>
