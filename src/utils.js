@@ -1,8 +1,8 @@
 // import { resetValidation } from "./validate.js";
 const cardPopup = document.querySelector("#form-cards");
-const imagePopup = document.querySelector("#images-card");
-const imageTitle = document.querySelector(".popup__image-title");
-const imageSrc = document.querySelector(".popup__image-container");
+const ImagePopup = document.querySelector("#images-card");
+const ImageTitle = document.querySelector(".popup__image-title");
+const ImageSrc = document.querySelector(".popup__image-container");
 export const initialCards = [
   {
     name: "Valle de Yosemite",
@@ -48,11 +48,11 @@ export function handleClosePopupAdd(evt) {
   cardPopup.classList.remove("popup_opened");
 }
 export function handleOpenImage(title, link, alt) {
-  imagePopup.classList.add("popup_opened");
-  imageTitle.textContent = title;
-  imageSrc.src = link;
-  imageSrc.alt = alt;
+  ImagePopup.classList.add("popup_opened");
+  ImageTitle.textContent = title;
+  ImageSrc.src = link;
+  ImageSrc.alt = alt;
 }
 export function handleCloseImage() {
-  imagePopup.classList.remove("popup_opened");
+  ImagePopup.classList.remove("popup_opened");
 }

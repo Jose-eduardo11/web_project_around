@@ -1,20 +1,19 @@
 import "./pages/index.css";
-import popupwithImage from "./popupwithimage.js";
-import popupwithform from "./popupwithform.js";
+import PopupWithImage from "./PopupWithImage.js";
+import PopupWithForm from "./PopupWithForm.js";
 import Card from "./card.js";
-import FormValidator from "./formvalidator.js";
-import { initialCards, handleClosePopupAdd } from "./utils.js";
-import { Section } from "./section.js";
-import { UserInfo } from "./userinfo.js";
+import FormValidator from "./FormValidator.js";
+import { initialCards, handleClosePopupAdd } from "./Utils.js";
+import { Section } from "./Section.js";
 
 const profilePopupButton = document.querySelector(".data__edit");
 const profilePopupAdd = document.querySelector(".profile__add");
 const profilePopup = document.querySelector("#form-profile");
 const cardPopup = document.querySelector("#form-cards");
 
-const popupProfile = new popupwithform("#form-profile");
-const popupCard = new popupwithform("#form-cards");
-const popupImage = new popupwithImage("#images-card");
+const popupProfile = new PopupWithForm("#form-profile");
+const popupCard = new PopupWithForm("#form-cards");
+const popupImage = new PopupWithImage("#images-card");
 
 popupImage.setEventListeners();
 popupProfile.setEventListeners();
@@ -65,7 +64,9 @@ cardPopup.addEventListener("submit", function (evt) {
   const imageValue = cardUrlInput.value;
   const cardAlt = cardTitleInput.value;
 
-  const card = new Card(titleValue, imageValue, () => {}).getCard();
+  const card = new Card(titleValue, imageValue, () => {
+    popupImage.open(titleValue, imageValue);
+  }).getCard();
   const cardContainer = document.querySelector(".grid");
   cardContainer.prepend(card);
   cardTitleInput.value = "";
