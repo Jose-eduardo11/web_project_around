@@ -1,5 +1,3 @@
-import { handleOpenImage } from "./Utils.js";
-
 const cardTemplate = document.querySelector(".grid-template").content;
 export default class Card {
   constructor(name, link, handleClickImage) {
