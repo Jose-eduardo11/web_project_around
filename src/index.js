@@ -3,18 +3,92 @@ import PopupWithImage from "./PopupWithImage.js";
 import PopupWithForm from "./PopupWithForm.js";
 import Card from "./card.js";
 import FormValidator from "./FormValidator.js";
-import { initialCards, handleClosePopupAdd } from "./Utils.js";
 import { Section } from "./Section.js";
+import Api from "./Api.js";
+import UserInfo from "./Userinfo.js";
+import PopupWithConfirmation from "./popupWithConfirmation.js";
 
 const profilePopupButton = document.querySelector(".data__edit");
 const profilePopupAdd = document.querySelector(".profile__add");
 const profilePopup = document.querySelector("#form-profile");
 const cardPopup = document.querySelector("#form-cards");
 
-const popupProfile = new PopupWithForm("#form-profile");
-const popupCard = new PopupWithForm("#form-cards");
 const popupImage = new PopupWithImage("#images-card");
 
+const popupDelete = new PopupWithConfirmation("#form-delete", () => {
+  api
+    .deleteCard(cardId)
+    .then(() => {
+      popupElement.removeCard();
+    })
+    .catch((err) => {
+      console.log(`Error al eliminar la tarjeta: ${err}`);
+    });
+});
+
+//----------------
+const api = new Api("https://around-api.es.tripleten-services.com/v1", {
+  authorization: "d374ffa3-938c-44a3-a4fd-2525d2b4c6e4",
+  "Content-Type": "application/json",
+});
+const user = new UserInfo(".data__name", ".data__job", ".profile__avatar");
+let cardContainer;
+api
+  .getInitialUser()
+  .then((data) => {
+    console.log(data);
+    user.setUserInfo(data.name, data.about, data.avatar);
+  })
+  .catch((error) => {
+    console.log(`Error: ${error.status}`);
+  });
+api.getInitialCards().then((data) => {
+  cardContainer = new Section(
+    {
+      items: data,
+      renderer: (item) => {
+        const newCard = new Card(
+          item.name,
+          item.link,
+          item.isLiked,
+          () => {
+            popupImage.open(item.name, item.link);
+          },
+          () => {
+            popupDelete.open();
+          }
+        );
+        return newCard.getCard();
+      },
+    },
+    ".grid"
+  );
+  cardContainer.renderItems();
+});
+const popupProfile = new PopupWithForm("#form-profile", (inputValues) => {
+  console.log(inputValues);
+  api.editProfile(inputValues.name, inputValues.about).then((data) => {
+    user.setUserInfo(data.name, data.about, data.avatar);
+  });
+});
+const popupCard = new PopupWithForm("#form-cards", (inputValues) => {
+  api.createCard(inputValues.title, inputValues.link).then((data) => {
+    const card = new Card(
+      data.name,
+      data.link,
+      () => {
+        popupImage.open(data.name, data.link, data.name);
+      },
+      () => {},
+      () => {
+        popupDelete.open(data.name, data.link, data.name);
+      }
+    ).getCard();
+    cardContainer.prependItem(card);
+  });
+});
+
+popupDelete.setEventListeners();
 popupImage.setEventListeners();
 popupProfile.setEventListeners();
 popupCard.setEventListeners();
@@ -24,54 +98,6 @@ profilePopupButton.addEventListener("click", () => {
 
 profilePopupAdd.addEventListener("click", () => {
   popupCard.open();
-});
-
-const formElement = document.querySelector(".popup__form");
-
-formElement.addEventListener("submit", function (evt) {
-  evt.preventDefault();
-
-  const nameInput = document.querySelector(".popup__input");
-  const jobInput = document.querySelector(".form__about-me");
-  const profilename = document.querySelector(".data__name");
-  const profilejob = document.querySelector(".data__job");
-
-  const nameValue = nameInput.value;
-  const jobValue = jobInput.value;
-  profilename.textContent = nameValue;
-  profilejob.textContent = jobValue;
-  popupProfile.close();
-});
-
-new Section(
-  {
-    items: initialCards,
-    renderer: (item) => {
-      const newCard = new Card(item.name, item.link, () => {
-        popupImage.open(item.name, item.link);
-      });
-      return newCard.getCard();
-    },
-  },
-  ".grid"
-).renderItems();
-
-cardPopup.addEventListener("submit", function (evt) {
-  evt.preventDefault();
-  const cardTitleInput = document.querySelector(".form__title");
-  const cardUrlInput = document.querySelector(".form__url");
-  const titleValue = cardTitleInput.value;
-  const imageValue = cardUrlInput.value;
-  const cardAlt = cardTitleInput.value;
-
-  const card = new Card(titleValue, imageValue, () => {
-    popupImage.open(titleValue, imageValue);
-  }).getCard();
-  const cardContainer = document.querySelector(".grid");
-  cardContainer.prepend(card);
-  cardTitleInput.value = "";
-  cardUrlInput.value = "";
-  handleClosePopupAdd();
 });
 
 const settings = {

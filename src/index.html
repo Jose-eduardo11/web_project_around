@@ -6,7 +6,7 @@
     <meta name="description" content="este es mi primer javascrip" />
     <meta name="author" content="Jose Eduardo Cristobal" />
     <meta name="keywords" content=" responsivo , proyecto , javascrip" />
-    <title>explorador</title>
+    <title>Explorador About-me</title>
   </head>
   <body>
     <div class="page">
@@ -73,6 +73,7 @@
               <input
                 id="name"
                 type="text"
+                name="name"
                 class="popup__input"
                 minlength="2"
                 maxlength="40"
@@ -84,6 +85,7 @@
               <input
                 id="about-me"
                 type="text"
+                name="about"
                 class="popup__input form__about-me"
                 minlength="2"
                 maxlength="200"
@@ -111,6 +113,7 @@
               <input
                 id="title"
                 type="text"
+                name="title"
                 class="popup__input form__title"
                 minlength="2"
                 maxlength="30"
@@ -121,6 +124,7 @@
               <input
                 id="url"
                 type="url"
+                name="link"
                 class="popup__input form__url"
                 required
                 placeholder="Image URL"
@@ -153,6 +157,57 @@
 
             <h3 class="popup__image-title"></h3>
           </div>
+        </div>
+        <div class="popup" id="form-delete">
+          <div class="popup__form register" id="register-cards">
+            <h2 class="register__title register__card">¿Estas Seguro/a?</h2>
+            <div class="register__form form">
+              <button
+                type="submit"
+                id="card-submit"
+                class="form__send form__send-card"
+              >
+                Si
+              </button>
+            </div>
+            <button class="popup__close" type="button">
+              <img
+                src="<%=require('./images/Close_Icon.svg')%>"
+                alt="boton de cerrar"
+              />
+            </button>
+          </div>
+        </div>
+        <div class="popup" id="form-avatar">
+          <form class="popup__form register" id="register-cards">
+            <h2 class="register__title register__card">
+              Cambiar Foto de Perfil
+            </h2>
+            <fieldset class="register__form form">
+              <input
+                id="url"
+                type="url"
+                name="link"
+                class="popup__input form__url"
+                required
+                placeholder="Image URL"
+              />
+              <span class="popup__input-span url-error"></span>
+              <button
+                type="submit"
+                id="card-submit"
+                class="form__send form__send-card"
+              >
+                Guardar
+              </button>
+            </fieldset>
+            <button class="popup__close" type="button">
+              <img
+                src="<%=require('./images/Close_Icon.svg')%>"
+                alt="boton de cerrar"
+              />
+            </button>
+          </form>
         </div>
       </main>
       <footer class="footer">&#169; 2021 Around The U.S.</footer>

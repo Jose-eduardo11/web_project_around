@@ -1,10 +1,14 @@
 const cardTemplate = document.querySelector(".grid-template").content;
+
 export default class Card {
-  constructor(name, link, handleClickImage) {
+  constructor(name, link, handleClickImage, handleLike, handleDelete) {
     this.name = name;
     this.link = link;
     this.handleClickImage = handleClickImage;
+    this.handleLike = handleLike;
+    this.handleDelete = handleDelete;
   }
+
   getTemplate() {
     return cardTemplate
       .querySelector(".grid__element-container")
@@ -13,6 +17,7 @@ export default class Card {
 
   toggleLike() {
     this.cardlikeButton.classList.toggle("like-active");
+    this.handleLike(this.data.id, !isLiked).then((updateLikes) => {});
   }
   removeCard() {
     this.htmlCard.remove();
@@ -23,17 +28,15 @@ export default class Card {
       this.toggleLike();
     });
     this.cardDeleteButton.addEventListener("click", () => {
-      this.removeCard();
+      this.handleDelete();
     });
     this.cardImage.addEventListener("click", () => {
-      console.log("que se abra el popup");
       this.handleClickImage(this.name, this.link, this.name);
     });
   }
   getCard() {
     this.setProperties();
     this.setEventListener();
-    console.log(this.htmlCard);
     return this.htmlCard;
   }
   setProperties() {
