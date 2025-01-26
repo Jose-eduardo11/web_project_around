@@ -37,7 +37,7 @@ export default class FormValidator {
     this.inputList.forEach((inputElement) => {
       inputElement.addEventListener("input", () => {
         this._checkInputValidity(inputElement);
-        this.toggleButtonState(inputElement);
+        // this.toggleButtonState(inputElement);
       });
     });
   }
@@ -62,11 +62,11 @@ export default class FormValidator {
       const inputList = Array.from(
         formElement.querySelectorAll(this.settings.inputSelector)
       );
-      this.toggleButtonState(
-        inputList,
-        submitButton,
-        this.settings.inactiveButtonClass
-      );
+      // this.toggleButtonState(
+      //   inputList,
+      //   submitButton,
+      //   this.settings.inactiveButtonClass
+      // );
       inputList.forEach((inputElement) => {
         this.hideInputError(formElement, inputElement);
       });

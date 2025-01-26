@@ -23,6 +23,7 @@
         <section class="profile">
           <img
             class="profile__avatar"
+            id="profile-avatar"
             src="<%=require('./images/image.jpg')%>"
             alt="aqui va tu foto de perfil"
           />
@@ -162,11 +163,7 @@
           <div class="popup__form register" id="register-cards">
             <h2 class="register__title register__card">¿Estas Seguro/a?</h2>
             <div class="register__form form">
-              <button
-                type="submit"
-                id="card-submit"
-                class="form__send form__send-card"
-              >
+              <button id="button-confirm" class="form__send form__send-card">
                 Si
               </button>
             </div>
@@ -195,7 +192,7 @@
               <span class="popup__input-span url-error"></span>
               <button
                 type="submit"
-                id="card-submit"
+                id="avatar-submit"
                 class="form__send form__send-card"
               >
                 Guardar

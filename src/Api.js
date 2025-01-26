@@ -56,61 +56,53 @@ export default class Api {
       return Promise.reject(`Error: ${res.status}`);
     });
   }
-  like() {
-    fetch(`${this.baseUrl}/cards/`, {
-      method: "PATCH",
+  like(id) {
+    return fetch(`${this.baseUrl}/cards/${id}/likes`, {
+      method: "PUT",
       headers: this.headers,
       body: JSON.stringify({
         isLiked: this.like,
       }),
-    })
-      .then((res) => res.json())
-      .then((result) => {
-        console.log(result);
-      });
-    // ...
+    }).then((res) => {
+      if (res.ok) {
+        return res.json();
+      }
+      return Promise.reject(`Error: ${res.status}`);
+    });
   }
-  deleteCard(name, link) {
-    fetch(`${this.baseUrl}/cards/:cardId`, {
+  deleteCard(cardId) {
+    return fetch(`${this.baseUrl}/cards/${cardId}`, {
       method: "DELETE",
       headers: this.headers,
       body: JSON.stringify({
-        name,
-        link,
+        id: cardId,
       }),
-    })
-      .then((res) => res.json())
-      .then((result) => {
-        console.log(result);
-      });
+    }).then((res) => res.json());
   }
-  deleteLike() {
-    fetch(`${this.baseUrl}/cards/:cardId`, {
+  deleteLike(id) {
+    return fetch(`${this.baseUrl}/cards/${id}/likes`, {
       method: "DELETE",
       headers: this.headers,
-      body: JSON.stringify({
-        name,
-        link,
-      }),
-    })
-      .then((res) => res.json())
-      .then((result) => {
-        console.log(result);
-      });
+    }).then((res) => {
+      if (res.ok) {
+        return res.json();
+      }
+      return Promise.reject(`Error: ${res.status}`);
+    });
   }
-  updateProfile() {
-    fetch(`${this.baseUrl}/users/me/avatar`, {
-      headers: this.headers,
+  editAvatar(link) {
+    console.log(link);
+    return fetch(`${this.baseUrl}/users/me/avatar`, {
       method: "PATCH",
       headers: this.headers,
       body: JSON.stringify({
-        name,
-        link,
+        avatar: link,
       }),
-    })
-      .then((res) => res.json())
-      .then((result) => {
-        console.log(result);
-      });
+    }).then((res) => {
+      if (res.ok) {
+        return res.json();
+      }
+      return Promise.reject(`Error: ${res.status}`);
+    });
   }
 }

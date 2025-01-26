@@ -6,15 +6,17 @@ export default class PopupWithConfirmation extends Popup {
     this.handleConfirm = handleConfirm;
     this._form = document.querySelector(".form__send");
   }
-  open() {
+  open(cardId) {
+    this.cardId = cardId;
+    console.log(this.cardId);
     console.log(this.popupSelector);
     this.popupSelector.classList.add("popup_opened");
   }
   setEventListeners() {
     super.setEventListeners();
-    this._form.addEventListener("click", () => {
-      console.log("click");
-      this._handleConfirm();
+    const button2 = document.querySelector("#button-confirm");
+    button2.addEventListener("click", () => {
+      this.handleConfirm(this.cardId);
     });
   }
 }
