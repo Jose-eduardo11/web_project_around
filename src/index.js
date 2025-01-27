@@ -54,14 +54,20 @@ api.getInitialCards().then((data) => {
           item.link,
           item.isLiked,
           item._id,
+          () => {
+            popupImage.open(item.name, item.link);
+          },
 
-          popupImage.open(item.name, item.link),
-
-          api.deleteLike(item._id),
+          () => {
+            api.deleteLike(item._id);
+          },
 
           (cardId) => {
             console.log(cardId);
             popupDelete.open(cardId);
+          },
+          () => {
+            api.like(item._id);
           }
         );
         return newCard.getCard();
@@ -73,7 +79,9 @@ api.getInitialCards().then((data) => {
 });
 const popupProfile = new PopupWithForm("#form-profile", (inputValues) => {
   console.log(inputValues);
+  buttonAvatar.textContent = "Cargando...";
   api.editProfile(inputValues.name, inputValues.about).then((data) => {
+    buttonAvatar.textContent = "Guardar";
     user.setUserInfo(data.name, data.about, data.avatar);
   });
 });

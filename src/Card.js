@@ -8,22 +8,27 @@ export default class Card {
     id,
     handleClickImage,
     deleteLike,
-    handleConfirm
+    handleConfirm,
+    handleLike
   ) {
     this.name = name;
     this.link = link;
     this.isLiked = isLike;
     this.id = id;
     this.handleClickImage = handleClickImage;
-    this.deleteLike = deleteLike.bind(this);
+    this.deleteLike = deleteLike;
     this.handleConfirm = handleConfirm;
+    this.handleLike = handleLike;
   }
 
   deleteCard() {
-    console.log(this.deleteLike);
-    return this.deleteLike().then((res) => {
-      console.log(res);
-    });
+    console.log(this.isLiked);
+    if (this.isLiked) {
+      this.deleteLike();
+    } else {
+      this.handleLike();
+    }
+    // return this.deleteLike();
   }
 
   getTemplate() {
@@ -66,5 +71,11 @@ export default class Card {
     this.cardDeleteButton = this.htmlCard.querySelector(".grid__button-trash");
     this.cardTitle.textContent = this.name;
     this.cardImage.src = this.link;
+    if (this.isLiked) {
+      console.log(this.isLiked);
+      this.cardlikeButton.classList.add("like-active");
+    } else {
+      this.cardlikeButton.classList.remove("like-active");
+    }
   }
 }
