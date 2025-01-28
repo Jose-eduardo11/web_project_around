@@ -12,6 +12,9 @@
   margin-top: 40px;
   margin-right: 30px;
 }
+.profile__avatar:hover {
+  opacity: 80%;
+}
 .profile__data {
   margin-top: 62px;
   max-width: 450px;
@@ -40,7 +43,7 @@
   border-color: #fff;
 }
 .data__edit:hover {
-  opacity: 60%;
+  opacity: 80%;
 }
 
 .data__job {
@@ -68,6 +71,9 @@
   .profile__avatar {
     width: 200px;
   }
+  .profile__avatar:hover {
+    opacity: 70%;
+  }
   .data__name {
     font-size: 32px;
   }
@@ -88,6 +94,9 @@
     height: 160px;
     margin: 0;
     display: flex;
+  }
+  .profile__avatar:hover {
+    opacity: 70%;
   }
   .profile__data {
     justify-content: center;

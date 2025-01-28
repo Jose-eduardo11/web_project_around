@@ -5,6 +5,7 @@ export default class Popup {
     this._handleEscClose = this._handleEscClose.bind(this);
   }
   open() {
+    console.log(this);
     this.popupElement.classList.add("popup_opened");
     document.addEventListener("keydown", this._handleEscClose);
   }
@@ -21,14 +22,15 @@ export default class Popup {
     return evt.target.classList.contains("popup_opened");
   }
   setEventListeners() {
+    console.log(this);
     this.closeButton.addEventListener("click", () => {
       this.close();
     });
-    // this.popupElement.addEventListener("click", (evt) => {
-    //   if (this.handleclickOutside(evt)) {
-    //     console.log("click por fuera");
-    //     this.close();
-    //   }
-    // });
+    this.popupElement.addEventListener("click", (evt) => {
+      if (this.handleclickOutside(evt)) {
+        console.log("click por fuera");
+        this.close();
+      }
+    });
   }
 }

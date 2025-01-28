@@ -21,10 +21,10 @@ export default class Card {
     this.handleLike = handleLike;
   }
 
-  deleteCard() {
+  deleteLike() {
     console.log(this.isLiked);
     if (this.isLiked) {
-      this.deleteLike();
+      this.handleLike();
     } else {
       this.handleLike();
     }
@@ -39,7 +39,7 @@ export default class Card {
 
   toggleLike() {
     this.cardlikeButton.classList.toggle("like-active");
-    this.deleteCard();
+    this.deleteLike();
     console.log(this.name, "name", this.id, "id");
   }
   removeCard() {

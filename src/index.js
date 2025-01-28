@@ -94,19 +94,26 @@ const popupAvatar = new PopupWithForm("#form-avatar", (inputValues) => {
 });
 
 const popupCard = new PopupWithForm("#form-cards", (inputValues) => {
+  buttonAvatar.textContent = "Cargando...";
   api.createCard(inputValues.title, inputValues.link).then((data) => {
     const card = new Card(
       data.name,
       data.link,
       data.isLiked,
       data._id,
-
-      popupImage.open(data.name, data.link, data.name),
-      api.deleteLike(data._id),
-      popupDelete.open(data.name, data.link, data.name)
+      () => {
+        popupImage.open(data.name, data.link, data.name);
+      },
+      () => {
+        api.deleteLike(data._id);
+      },
+      () => {
+        popupDelete.open(data.name, data.link, data.name);
+      }
     ).getCard();
     cardContainer.prependItem(card);
   });
+  buttonAvatar.textContent = "Guardar";
 });
 
 popupDelete.setEventListeners();
