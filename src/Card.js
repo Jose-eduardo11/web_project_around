@@ -22,14 +22,17 @@ export default class Card {
     this.removeCard = this.removeCard.bind(this);
   }
 
-  deleteLike() {
+  removeLike() {
     console.log(this.isLiked);
+    this.isLiked = false;
     if (this.isLiked) {
-      this.handleLike();
+      this.deleteLike();
+      this.isLiked = false;
     } else {
+      console.log(this.handleLike);
       this.handleLike();
+      this.isLiked = true;
     }
-    // return this.deleteLike();
   }
 
   getTemplate() {
@@ -40,7 +43,7 @@ export default class Card {
 
   toggleLike() {
     this.cardlikeButton.classList.toggle("like-active");
-    this.deleteLike();
+    this.removeLike();
     console.log(this.name, "name", this.id, "id");
   }
   removeCard() {
