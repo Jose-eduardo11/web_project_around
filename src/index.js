@@ -21,11 +21,50 @@ const cardPopup = document.querySelector("#form-cards");
 const popupImage = new PopupWithImage("#images-card");
 
 const popupDelete = new PopupWithConfirmation("#form-delete", (cardId) => {
-  console.log(cardId);
+  console.log(cardId, " - cardID");
   api
     .deleteCard(cardId)
     .then(() => {
-      popupElement.removeCard();
+      const gridCards = document.querySelectorAll(".grid__element-container");
+      console.log(gridCards, "=> gridcards");
+      gridCards.forEach((element) => {
+        element.remove();
+      });
+    })
+    .then(() => {
+      api.getInitialCards().then((data) => {
+        cardContainer = new Section(
+          {
+            items: data,
+            renderer: (item) => {
+              const newCard = new Card(
+                item.name,
+                item.link,
+                item.isLiked,
+                item._id,
+                () => {
+                  popupImage.open(item.name, item.link);
+                },
+
+                () => {
+                  api.deleteLike(item._id);
+                },
+
+                (cardId, removeCard) => {
+                  console.log(cardId);
+                  popupDelete.open(item._id, removeCard);
+                },
+                () => {
+                  api.like(item._id);
+                }
+              );
+              return newCard.getCard();
+            },
+          },
+          ".grid"
+        );
+        cardContainer.renderItems();
+      });
     })
     .catch((err) => {
       console.log(`Error al eliminar la tarjeta: ${err}`);
@@ -62,9 +101,9 @@ api.getInitialCards().then((data) => {
             api.deleteLike(item._id);
           },
 
-          (cardId) => {
+          (cardId, removeCard) => {
             console.log(cardId);
-            popupDelete.open(cardId);
+            popupDelete.open(item._id, removeCard);
           },
           () => {
             api.like(item._id);
@@ -108,7 +147,7 @@ const popupCard = new PopupWithForm("#form-cards", (inputValues) => {
         api.deleteLike(data._id);
       },
       () => {
-        popupDelete.open(data.name, data.link, data.name);
+        popupDelete.open(data._id, data.link, data.name);
       }
     ).getCard();
     cardContainer.prependItem(card);

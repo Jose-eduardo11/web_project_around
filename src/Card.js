@@ -19,6 +19,7 @@ export default class Card {
     this.deleteLike = deleteLike;
     this.handleConfirm = handleConfirm;
     this.handleLike = handleLike;
+    this.removeCard = this.removeCard.bind(this);
   }
 
   deleteLike() {
@@ -51,8 +52,8 @@ export default class Card {
       this.toggleLike();
     });
     this.cardDeleteButton.addEventListener("click", () => {
-      this.handleConfirm(this.id);
-      console.log(this.id);
+      this.handleConfirm(this.id, this.removeCard);
+      console.log(this.id, this.removeCard);
     });
     this.cardImage.addEventListener("click", () => {
       this.handleClickImage(this.name, this.link, this.name);

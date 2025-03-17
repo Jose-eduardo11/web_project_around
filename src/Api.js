@@ -74,9 +74,6 @@ export default class Api {
     return fetch(`${this.baseUrl}/cards/${cardId}`, {
       method: "DELETE",
       headers: this.headers,
-      body: JSON.stringify({
-        id: cardId,
-      }),
     }).then((res) => res.json());
   }
   deleteLike(id) {
